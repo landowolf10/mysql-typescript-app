@@ -3,14 +3,9 @@ import { getNotes, createNote, updateNote, deleteNote } from "../controllers/not
 
 const router = Router();
 
-router.route('/')
-    .post(createNote)
-    .put(updateNote);
-
-router.route('/:noteID')
-    .delete(deleteNote);
-
-router.route('/:userID')
-    .get(getNotes);
+router.route('/notes/:userID').get(getNotes);
+router.route('/notes').post(createNote)
+router.route('/notes').put(updateNote);
+router.route('/notes/:noteID').delete(deleteNote);
 
 export default router;

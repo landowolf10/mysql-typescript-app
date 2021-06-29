@@ -2,10 +2,8 @@ import express, { Application } from 'express';
 import morgan from 'morgan';
 
 //Routes
-import IndexRoutes from './routes/index.routes';
 import UserRoutes from './routes/user.routes';
-import LoginRoutes from './routes/login.routes';
-import  NoteRoutes from "./routes/notes.routes";
+import  NoteRoutes from './routes/notes.routes';
 
 export class App
 {
@@ -29,14 +27,13 @@ export class App
     {
         this.app.use(morgan('dev'));
         this.app.use(express.json());
+        this.app.use(express.urlencoded({ extended: false }));
     }
 
     routes()
     {
-        this.app.use(IndexRoutes);
-        this.app.use('/users', UserRoutes);
-        this.app.use('/users/login', LoginRoutes);
-        this.app.use('/notes', NoteRoutes);
+        this.app.use(UserRoutes);
+        this.app.use(NoteRoutes);
     }
 
     async listen()
